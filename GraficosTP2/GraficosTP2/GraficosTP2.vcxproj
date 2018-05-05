@@ -79,17 +79,20 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SFML-2.4.2(32)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;openal32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-audio-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-graphics-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-window-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-system-d-2.dll" "$(outdir)"
+copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\openal32.dll" "$(outdir)"
 mkdir "$(outdir)\images"
 copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
 mkdir "$(outdir)\fonts"
 copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
+mkdir "$(outdir)\sounds"
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\sounds"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -102,7 +105,7 @@ copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SFML-2.4.2(64)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;openal32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-audio-d-2.dll" "$(outdir)"
@@ -112,7 +115,9 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-system-d-2.dll" "$(outdir)"
 mkdir "$(outdir)\images"
 copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
 mkdir "$(outdir)\fonts"
-copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
+mkdir "$(outdir)\sounds"
+copy "$(SolutionDir)GraficosTP2\sounds" "$(outdir)\sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,14 +134,17 @@ copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SFML-2.4.2(32)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;openal32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(outdir)\images"
+      <Command>copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\openal32.dll" "$(outdir)"
+mkdir "$(outdir)\images"
 copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
 mkdir "$(outdir)\fonts"
-copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
+mkdir "$(outdir)\sounds"
+copy "$(SolutionDir)GraficosTP2\sounds" "$(outdir)\sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,14 +161,17 @@ copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SFML-2.4.2(64)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;openal32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(outdir)\images"
+      <Command>copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\openal32.dll" "$(outdir)"
+mkdir "$(outdir)\images"
 copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
 mkdir "$(outdir)\fonts"
-copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
+mkdir "$(outdir)\sounds"
+copy "$(SolutionDir)GraficosTP2\sounds" "$(outdir)\sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
