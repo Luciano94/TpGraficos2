@@ -7,6 +7,12 @@ void movement(sf::Sprite &player, float speed) {
 		player.move(speed, 0);
 }
 
+void closeEvent(sf::Event &event, sf::Window &window) {
+	if (event.type == sf::Event::Closed ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		window.close();
+}
+
 int main(){
 	/*Windows*/
 	int winWidth = 800;
@@ -32,8 +38,7 @@ int main(){
 		/*Events Loop*/
 		sf::Event event;
 		while (window.pollEvent(event)){
-			if (event.type == sf::Event::Closed)
-				window.close();
+			closeEvent(event, window);
 			movement(player, (speed * elapsed));
 		}
 		window.clear();
