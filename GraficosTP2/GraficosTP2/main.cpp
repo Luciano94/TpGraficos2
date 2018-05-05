@@ -108,6 +108,28 @@ int main(){
 		asteroids[i].setTexture(asteroidT);
 		asteroids[i].setPosition(rand() % winHeight, 0);
 	}
+	/*UI*/
+	/*font*/
+	sf::Font font;
+	font.loadFromFile("fonts/OpenSans.ttf");
+	/*lifes*/
+	sf::Text lifes;
+	std::string life = "Lifes: " + std::to_string(pLifes);
+	lifes.setFont(font);
+	lifes.setString(life);
+	lifes.setCharacterSize(24);
+	lifes.setFillColor(sf::Color::Red);
+	lifes.setStyle(sf::Text::Bold);
+	lifes.setPosition(0, 0);
+	/*Points*/
+	sf::Text points;
+	std::string point = "Points: " + std::to_string(score);
+	points.setFont(font);
+	points.setString(point);
+	points.setCharacterSize(24);
+	points.setFillColor(sf::Color::Red);
+	points.setStyle(sf::Text::Bold);
+	points.setPosition(600, 0);
 	/*Clock*/
 	sf::Clock clock;
 	float elapsed;
@@ -116,6 +138,11 @@ int main(){
 		/*get elapsed time*/
 		elapsed = clock.getElapsedTime().asSeconds();
 		clock.restart();
+		/*UI update*/
+		life = "Lifes: " + std::to_string(pLifes);
+		lifes.setString(life);
+		point = "Points: " + std::to_string(score);
+		points.setString(point);
 		/*Collisions*/
 		ColPlayerAsteroid(player, pLifes, asteroids);
 		colBulletAsteroid(bullet, asteroids, score);
@@ -133,6 +160,8 @@ int main(){
 			window.draw(asteroids[i]);
 		window.draw(player);
 		window.draw(bullet);
+		window.draw(lifes);
+		window.draw(points);
 		window.display();
 	}
 	return 0;

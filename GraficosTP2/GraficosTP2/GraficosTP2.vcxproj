@@ -88,6 +88,8 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-window-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-system-d-2.dll" "$(outdir)"
 mkdir "$(outdir)\images"
 copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
+mkdir "$(outdir)\fonts"
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -108,7 +110,9 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-graphics-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-window-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-system-d-2.dll" "$(outdir)"
 mkdir "$(outdir)\images"
-copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
+mkdir "$(outdir)\fonts"
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,7 +134,9 @@ copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
     </Link>
     <PostBuildEvent>
       <Command>mkdir "$(outdir)\images"
-copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
+mkdir "$(outdir)\fonts"
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,7 +158,9 @@ copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
     </Link>
     <PostBuildEvent>
       <Command>mkdir "$(outdir)\images"
-copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
+mkdir "$(outdir)\fonts"
+copy "$(SolutionDir)GraficosTP2\fonts" "$(outdir)\fonts"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
