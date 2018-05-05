@@ -86,6 +86,8 @@
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-graphics-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-window-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-system-d-2.dll" "$(outdir)"
+mkdir "$(outdir)\images"
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -105,7 +107,8 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(32)\bin\sfml-system-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-graphics-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-window-d-2.dll" "$(outdir)"
 copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-system-d-2.dll" "$(outdir)"
-</Command>
+mkdir "$(outdir)\images"
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,6 +128,10 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-system-d-2.dll" "$(outdir)"
       <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(outdir)\images"
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -143,6 +150,10 @@ copy "$(SolutionDir)Libs\SFML-2.4.2(64)\bin\sfml-system-d-2.dll" "$(outdir)"
       <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-main.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(outdir)\images"
+copy "$(SolutionDir)GraficosTP2\images" "$(outdir)\images"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

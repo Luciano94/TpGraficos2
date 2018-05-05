@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <ctime>
 #define WINWIDTH 800;
 #define WINHEIGHT 600;
 #define PSPEED 300;
@@ -33,6 +34,16 @@ void bulletShot(float playerX, float playerY, sf::Sprite &bullet, float bulletSp
 	}
 }
 
+void asteroidUpdate(sf::Sprite asteroids[], float winHeight, sf::Texture asteroidT, float &aSpeed, float elapsed) {
+	for (int i = 0; i < 10; i++) {
+		aSpeed = (rand() % 500);
+		if (asteroids[i].getPosition().y >(winHeight + asteroidT.getSize().y)) {
+			asteroids[i].setPosition(rand() % 600, 0);
+		}
+		else asteroids[i].move(0, aSpeed * elapsed);
+	}
+}
+
 int main(){
 	/*Windows*/
 	int winWidth = WINWIDTH;
@@ -55,6 +66,18 @@ int main(){
 	bullet.setTexture(bulletT);
 	bullet.setPosition(-8,-8);
 	bool bulletFlag = false;
+	/*Random setup*/
+	srand(time(0));
+	/*Asteroids*/
+	float aSpeed = (rand() % 500);
+	sf::Texture asteroidT;
+	asteroidT.loadFromFile("images/asteroid.png");
+	sf::Sprite asteroids[10];
+	for (int i = 0; i < 10; i++)
+	{
+		asteroids[i].setTexture(asteroidT);
+		asteroids[i].setPosition(rand() % winHeight, 0);
+	}
 	/*Clock*/
 	sf::Clock clock;
 	float elapsed;
@@ -66,12 +89,15 @@ int main(){
 		/*Game loop*/
 		movement(player, (speed * elapsed));
 		bulletShot(player.getPosition().x + 18, player.getPosition().y,bullet, bulletSpeed * elapsed, bulletFlag);
+		asteroidUpdate(asteroids, winHeight, asteroidT, aSpeed, elapsed);
 		/*Events Loop*/
 		sf::Event event;
 		while (window.pollEvent(event))
 			closeEvent(event, window);
 		/*Window update*/
 		window.clear();
+		for (int i = 0; i < 10; i++)
+			window.draw(asteroids[i]);
 		window.draw(player);
 		window.draw(bullet);
 		window.display();
