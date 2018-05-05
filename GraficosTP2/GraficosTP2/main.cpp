@@ -4,6 +4,7 @@
 #define WINHEIGHT 600;
 #define PSPEED 300;
 #define BSPEED 1000;
+#define LIFES 3;
 
 void movement(sf::Sprite &player, float speed) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -44,6 +45,33 @@ void asteroidUpdate(sf::Sprite asteroids[], float winHeight, sf::Texture asteroi
 	}
 }
 
+void ColPlayerAsteroid(sf::Sprite &player, int &plifes, sf::Sprite asteroids[]) {
+	sf::Texture asteroidT = *asteroids[0].getTexture();
+	sf::Texture playerT = *player.getTexture();
+	for (int i = 0; i < 10; i++) {
+		if ((player.getPosition().x <= asteroids[i].getPosition().x)
+			&& (player.getPosition().x + playerT.getSize().x >= asteroids[i].getPosition().x)
+			&& player.getPosition().y <= (asteroids[i].getPosition().y + asteroidT.getSize().y)) {
+			asteroids[i].setPosition(rand() % 600, 0);
+			plifes--;
+		}
+	}
+}
+
+void colBulletAsteroid(sf::Sprite &bullet, sf::Sprite asteroids[], int &score) {
+	sf::Texture asteroidT = *asteroids[0].getTexture();
+	for (int i = 0; i < 10; i++) {
+		if (bullet.getPosition().x >= asteroids[i].getPosition().x
+			&& bullet.getPosition().x <= (asteroids[i].getPosition().x + asteroidT.getSize().x)
+			&& bullet.getPosition().y <= (asteroids[i].getPosition().y + asteroidT.getSize().y)) {
+
+			asteroids[i].setPosition(rand() % 600, 0);
+			bullet.setPosition(-8, -8);
+			score += 100;
+		}
+	}
+}
+
 int main(){
 	/*Windows*/
 	int winWidth = WINWIDTH;
@@ -52,6 +80,8 @@ int main(){
 	window.setFramerateLimit(60);
 	/*Player*/
 	float speed = PSPEED;
+	int pLifes = LIFES;
+	int score = 0;
 	sf::Texture playerT;
 	playerT.loadFromFile("images/player.png");
 	sf::Sprite player;
@@ -86,6 +116,9 @@ int main(){
 		/*get elapsed time*/
 		elapsed = clock.getElapsedTime().asSeconds();
 		clock.restart();
+		/*Collisions*/
+		ColPlayerAsteroid(player, pLifes, asteroids);
+		colBulletAsteroid(bullet, asteroids, score);
 		/*Game loop*/
 		movement(player, (speed * elapsed));
 		bulletShot(player.getPosition().x + 18, player.getPosition().y,bullet, bulletSpeed * elapsed, bulletFlag);
