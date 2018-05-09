@@ -1,6 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include <ctime>
+#ifdef _DEBUG
+	#include "vld.h"
+#endif // _DEBUG
+
 #define WINWIDTH 800;
 #define WINHEIGHT 600;
 #define PSPEED 300;
